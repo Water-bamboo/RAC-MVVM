@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <DebugPanel.h>
 
 @interface AppDelegate ()
 
@@ -16,7 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     // Override point for customization after application launch.
+    [DebugPanel shareInstance].httpChanged = ^(NSString *domain) {
+        //环境切换成功后的回调
+        NSLog(@"domain=%@", domain);
+    };
+    //可选
+    [DebugPanel shareInstance].offlineDomain = @"http://xxx.com";
+    [DebugPanel shareInstance].onlineDomain = @"http://xxx.com";
     return YES;
 }
 
