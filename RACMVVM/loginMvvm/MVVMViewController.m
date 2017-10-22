@@ -34,7 +34,7 @@
     @weakify(self)
     RAC(self.viewModel, userName) = self.userNameTF.rac_textSignal;
     RAC(self.viewModel, password) = self.passwordTF.rac_textSignal;
-    
+//    RACObserve(self.viewModel, userName) =
     NSLog(@"loginBtn.rac_command=%@", self.loginBtn.rac_command);
     
     self.loginBtn.rac_command = self.viewModel.loginCommand;

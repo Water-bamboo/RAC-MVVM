@@ -1,31 +1,22 @@
 //
-//  ViewController.m
+//  LoginViewController.m
 //  RACMVVM
 //
 //  Created by Shui on 2017/10/13.
 //  Copyright © 2017年 Shuizhu. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LoginViewController.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MVVMViewController.h"
-#import "RACCommandTest.h"
 
-@interface ViewController ()
+@interface LoginViewController ()
 
 @property (nonatomic, strong) UITextField *passwordTextField;
 
 @end
 
-@implementation ViewController
-
-- (IBAction)openLogin:(id)sender {
-    MVVMViewController *mvvmVC = [[MVVMViewController alloc] init];
-    [self presentViewController:mvvmVC animated:YES completion:^{
-        //
-    }];
-}
+@implementation LoginViewController
 
 
 - (void)viewDidLoad {
@@ -89,8 +80,7 @@
     [submit setTitle:@"提交" forState:UIControlStateNormal];
     [[submit rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         NSLog(@"---提交---");
-        RACCommandTest *racCmd = [[RACCommandTest alloc] init];
-        [racCmd test2];
+        
     }];
 
 //    Unknown warning group '-Wreceiver-is-weak', ignored
@@ -113,10 +103,11 @@
         }
     }];
 
-    [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(setValueToPassword) userInfo:@{@"data":@3} repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(setRandomValueToPasswordField) userInfo:@{@"data":@3} repeats:YES];
 }
 
-- (void) setValueToPassword
+
+- (void) setRandomValueToPasswordField
 {
     self.passwordTextField.text = [NSString stringWithFormat:@"%d", arc4random_uniform(20)];
 }
