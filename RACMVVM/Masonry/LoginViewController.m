@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UITextField *passwordTextField;
 
+
 @end
 
 @implementation LoginViewController
@@ -22,8 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-//    self
+    self.title = @"Masonary";
     
     UIView *loginPanel = [[UIView alloc] init];
     [self.view addSubview:loginPanel];
@@ -45,7 +45,8 @@
         UITextField *tf = (UITextField *)x;
         NSLog(@"------%@", tf.text);
     }];
-
+    
+    
     [userNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(loginPanel);
         make.size.mas_equalTo(CGSizeMake(250, 50));
@@ -83,27 +84,9 @@
         
     }];
 
-//    Unknown warning group '-Wreceiver-is-weak', ignored
-//    RACSignal
-//    RACSubject
-
-    RACSubject *subject = [RACSubject subject];
-    [subject subscribeNext:^(id x) {
-        NSLog(@"---收到一个偶数：%@---", x);
-    }];
-
-    @weakify(subject)
-    [[RACObserve(passwordTextField, text) filter:^BOOL(id value) {
-        return [value integerValue] > 10;
-    }] subscribeNext:^(id x) {
-        @strongify(subject)
-        NSLog(@"password is changed: x=%@", x);
-        if ([x integerValue] % 2 == 0) {
-            [subject sendNext:x];
-        }
-    }];
-
+    
     [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(setRandomValueToPasswordField) userInfo:@{@"data":@3} repeats:YES];
+    
 }
 
 

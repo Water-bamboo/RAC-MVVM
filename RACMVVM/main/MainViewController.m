@@ -10,6 +10,8 @@
 #import "MVVMViewController.h"
 #import "RACCommandTestViewController.h"
 #import "LoginViewController.h"
+#import "PragmaViewController.h"
+#import "MetaProgramViewController.h"
 
 @interface MainViewController ()
 
@@ -22,9 +24,21 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)metaProgramOpen:(id)sender {
+    MetaProgramViewController *metaVC = [MetaProgramViewController new];
+    [self.navigationController pushViewController:metaVC animated:YES];
+}
+
+
 - (IBAction)loginWithRACDemo:(id)sender {
     LoginViewController *loginRAC2VC = [LoginViewController new];
     [self.navigationController pushViewController:loginRAC2VC animated:NO];
+}
+
+
+- (IBAction)openPragmaDemo:(id)sender {
+    PragmaViewController *vc = [PragmaViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
